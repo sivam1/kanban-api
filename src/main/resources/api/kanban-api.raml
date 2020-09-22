@@ -1,0 +1,64 @@
+#%RAML 1.0
+title: kanban-api
+baseUri:  
+version: v1
+traits: 
+  client-id-rquired:
+      queryParameters:
+        client_id:
+          type: string
+        client_secret:
+          type: string    
+types:
+  kanbanmovementType:
+    type: object
+    properties:
+      context:
+        type: object
+        required: true
+        properties:
+          messageSource: string
+          messageType: string
+          transactionId: string
+      content:
+        type: object
+        required: true
+        properties:
+          orderNumber: string
+          workCenter: 
+             type: string
+             minLength: 4
+          dateTimeStamp: string
+          kanbanType: string
+          materialNumber: string
+          manufacturingMaterialGroup: 
+            type: string
+            minLength: 4
+
+/kanban:
+  displayName: Kanban movement details
+  post:
+    description: API to create send Kanban movement details from GE-MES TO WES
+   
+    body:
+      application/json:
+        type: kanbanmovementType
+        example: !include kanban-sample.json
+    responses:
+      200:
+        body:
+          application/json:
+            example:  |
+              {
+                   "responseStatus": "SUCCESS",
+                   "responseData": "Successfully posted the kanban movement  data to WES!" 
+                }
+      400:
+        description: ERROR
+        body:
+            application/json:
+              example: |
+                {
+                    "responseStatus": "ERROR",
+                    "responseData": "Error while submitting the data. Please contact admin" 
+                  }

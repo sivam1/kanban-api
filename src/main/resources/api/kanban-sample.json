@@ -1,0 +1,15 @@
+{
+   "context":{
+      "messageSource":"GE-MES",
+      "messageType":"KanbanMovement",
+      "transactionId":""
+   },
+   "content":{
+      "orderNumber":"40210113",
+      "workCenter":"TEST",
+      "dateTimeStamp":"",
+      "kanbanType":"Request",
+      "materialNumber":"000000005000070165",
+      "manufacturingMaterialGroup":"GTST"
+   }
+}
